@@ -12,10 +12,10 @@ $(function () {
             return;
         }
         $.post("proverikorisnika", {"user": user, "password": password}, function (data) {
-            if (data.user.toString().trim() == "1") {
+            if (data.user.toString().trim() === "1") {
                 userOK = true;
             }
-            if (data.password.toString().trim() == "1") {
+            if (data.password.toString().trim() === "1") {
                 passwordOK = true;
             }
             if (!userOK) {
