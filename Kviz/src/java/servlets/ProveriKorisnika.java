@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package servlets;
-
+import baza.DB;
 import baza.Korisnik;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -27,7 +27,7 @@ public class ProveriKorisnika extends HttpServlet {
     List<Korisnik> users;
     Map<String,String> userPassword;
     public ProveriKorisnika() {
-        users = DB.query("SELECT k FROM Kviz k");
+        users = DB.selectAllUsers();
         userPassword = new HashMap<>();
         for (Korisnik k: users) {
             userPassword.put(k.getKorUsername(), k.getKorPassword());
@@ -51,11 +51,10 @@ public class ProveriKorisnika extends HttpServlet {
                 proveraP =1;
             }
         }
-        
-
+        //  {"user":"proveraU","password":"proveraP"}
+        String sb = new String("{\"user\":\"" + proveraU + "\",\"password\":\"" + proveraP + "\"}" );
         try (PrintWriter out = response.getWriter()) {
-           out.println("\"user\":\""+proveraU+"\"}");
-           out.println("\"password\":\""+proveraP+"\"}");
+           out.println(sb);
         }
     }
 

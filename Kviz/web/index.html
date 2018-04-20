@@ -1,46 +1,69 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Login</title>
+        <style>
+            #error {
+                color: red;
+            }
+        </style>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script>
-            var user;
-            var pass;
-            var btn = $("#login");
-            var userOk, passOk;
+            //  $(document).ready(function(){
 
-            function provera() {
-                if (goodLength() && ajax()) {
-                    btn.removeAttr('disabled');
-                } else
-                    btn.attr('disabled', 'disabled');
-            }
-
-            function goodLength() {
-                user = $("#username").val();
-                return (user.length < 4);
-            }
-
-            function ajax() {
-                var pass = $("#password").val();
-                $.post("proverakorisnika", {"user": user, "password": pass}, function (data, status) {
-                    userOk = data.user.toString();
-                    passOk = data.password.toString();
-                });
-                if (userOk == "1" && passOk == "1") {
-                    return true;
+            function login() {
+                var userOK = false;
+                var passwordOK = false;
+                var post;
+                var user = $("#user").val();
+                var password = $("#password").val();
+//                alert("before length check");
+                if (user.length > 2) {
+                    $("#error").hide();
+                } else {
+                    $("#error").html("Username too short");
+                    $("#error").show();
+                    return;
                 }
-                return false;
+//                alert("before post");
+                $.post("proverikorisnika", {"user": user, "password": password}, function (data, status) {
+//                    alert("in post");
+//                    alert(data.user.toString());
+//                    alert(data.password.toString());
+                    if (data.user.toString().trim()=="1") {
+                        userOK = true;
+                    }
+                    if ( data.password.toString().trim()=="1" ) {
+                        passwordOK = true;
+                    }
+//                    post = "asd";
+//                    alert("after post");
+//                    alert("asd");
+                    if (!userOK) {
+                        $("#error").show();
+                        $("#error").html("Username incorrect");
+                    } else if (!passwordOK) {
+                        $("#error").show();
+                        $("#error").html("Password incorrect");
+                    } else {
+                        $("#error").hide();
+                        window.location.href = "http://localhost:8080/Kviz/pitanja.html";
+                    }
+                });
             }
 
-            function submit() {
-                $.post("", );
-            }</script>
+
+
+            // });
+        </script>
     </head>
     <body>
-        <form action="pitanja.html" method="get" id="nameform">
-            First name: <input type="text" name="fname"><br>
-            Password: <input type="text" name="lname"><br>
-        </form>
-        <button type="submit" form="nameform" value="Submit">Submit</button>
+        <div>
+            <input type="text" id="user" placeholder="user"/>
+            <input type="password" id="password" placeholder="password"/>
+            <button onclick="login()">Login</button>
+            <p id="error" hidden>Username incorrect</p>
+        </div>
     </body>
 </html>
+
