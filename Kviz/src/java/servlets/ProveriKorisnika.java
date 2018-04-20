@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlets;
 import baza.DB;
 import baza.Korisnik;
@@ -28,20 +23,19 @@ import java.util.*;
  *
  * @author Grupa1
  */
+
 @WebServlet(name = "ProveriKorisnika", urlPatterns = {"/proverikorisnika"})
 public class ProveriKorisnika extends HttpServlet {
 
-    List<Korisnik> users;
-    Map<String,String> userPassword;
+    static List<Korisnik> users;
+    static Map<String,String> userPassword;
     public ProveriKorisnika() {
         users = DB.selectAllUsers();
         userPassword = new HashMap<>();
         for (Korisnik k: users) {
             userPassword.put(k.getKorUsername(), k.getKorPassword());
-        }
-        
+        }        
     }
-
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -60,7 +54,7 @@ public class ProveriKorisnika extends HttpServlet {
             }
         }
         //  {"user":"proveraU","password":"proveraP"}
-        String sb = new String("{\"user\":\"" + proveraU + "\",\"password\":\"" + proveraP + "\"}" );
+        String sb = "{\"user\":\"" + proveraU + "\",\"password\":\"" + proveraP + "\"}";
         try (PrintWriter out = response.getWriter()) {
            out.println(sb);
         }

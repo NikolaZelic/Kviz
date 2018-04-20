@@ -1,16 +1,32 @@
+
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
-        <title>PITANJA</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="list.css">
+        <link rel="stylesheet" href="pitanja.css">
     </head>
     <body>
-        <div>Pitanja</div>
+        <div id="content"> 
+            <h1>Pitanje {index}: </h1>
+            <p id="pitanje"></p>
+            <table>
+                <tr><td>
+                        <label for="odg1">111</label>
+                        <input id="odg1" name="odg" type="radio">
+                    </td><td>
+                        <label for="odg2">222</label>
+                        <input id="odg2" name="odg" type="radio">
+                    </td></tr>
+                <tr><td>
+                        <label for="odg3">333</label>
+                        <input id="odg3" name="odg" type="radio">
+                    </td><td>
+                        <label for="odg4">444</label>
+                        <input id="odg4" name="odg" type="radio">
+                    </td></tr>
+            </table>
+            <input id="btn1" type="button" value="Preskoci >>">
+            <input id="btn2" type="button" value="Potvrdi >">
+        </div>
     </body>
 </html>
