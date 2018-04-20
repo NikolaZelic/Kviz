@@ -51,11 +51,10 @@ public class ProveriKorisnika extends HttpServlet {
                 proveraP =1;
             }
         }
-        
-
+        //  {"user":"proveraU","password":"proveraP"}
+        StringBuilder sb = new StringBuilder("{\"user\":\"" + proveraU + "\",\"password\":\"" + proveraP + "\"}" );
         try (PrintWriter out = response.getWriter()) {
-           out.println("\"user\":\""+proveraU+"\"}");
-           out.println("\"password\":\""+proveraP+"\"}");
+           out.println(sb.toString());
         }
     }
 
