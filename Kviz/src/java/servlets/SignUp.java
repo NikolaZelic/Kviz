@@ -52,13 +52,16 @@ public class SignUp extends HttpServlet {
         
         response.setContentType("application/json;charset=UTF-8");
         Korisnik korisnik = new Korisnik();
-        String user = request.getParameter("user").toString();
-        String password = request.getParameter("password").toString();
+        String user = request.getParameter("user");
+        String password = request.getParameter("password");
         korisnik.setKorUsername(user);
-        korisnik.setKorUsername(password);
+        korisnik.setKorPassword(password);
         DB.insert(korisnik);
+        ProveriKorisnika.userPassword.put(user, password);
         session.setAttribute("user", user);
         try (PrintWriter out = response.getWriter()) {
+            out.print("{}");
+            
         }
     }
 

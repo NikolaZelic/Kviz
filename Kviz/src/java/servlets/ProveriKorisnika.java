@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-<<<<<<< HEAD
-=======
 
 
 import javax.servlet.*;
@@ -25,12 +23,12 @@ import java.util.*;
  *
  * @author Grupa1
  */
->>>>>>> 7af6c42c6fbd7a0f632dc8990c15c928e2c08dc8
+
 @WebServlet(name = "ProveriKorisnika", urlPatterns = {"/proverikorisnika"})
 public class ProveriKorisnika extends HttpServlet {
 
-    List<Korisnik> users;
-    Map<String,String> userPassword;
+    static List<Korisnik> users;
+    static Map<String,String> userPassword;
     public ProveriKorisnika() {
         users = DB.selectAllUsers();
         userPassword = new HashMap<>();
