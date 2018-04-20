@@ -1,10 +1,4 @@
 $(function () {
-    $("#name").keyup(function () {
-        var dugme = $("#dugme");
-        var name = $("#name").val();
-        dugme.prop("disabled", name.length < 3);
-    });
-
     $("#dugme").click(function () {
         var userOK = false;
         var passwordOK = false;
