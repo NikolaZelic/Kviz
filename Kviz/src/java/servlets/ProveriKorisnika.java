@@ -4,16 +4,7 @@
  * and open the template in the editor.
  */
 package servlets;
-<<<<<<< HEAD
-<<<<<<< HEAD
 import baza.DB;
-=======
-
->>>>>>> c201737408d285bc01bb853ab35113ca80b026e9
-=======
-
-import baza.DB;
->>>>>>> c3f1b85a4b7f7af0d16b07952d4702ec6f447d92
 import baza.Korisnik;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -34,25 +25,17 @@ import javax.servlet.http.HttpServletResponse;
 public class ProveriKorisnika extends HttpServlet {
 
     List<Korisnik> users;
-    Map<String, String> userPassword;
-
+    Map<String,String> userPassword;
     public ProveriKorisnika() {
-<<<<<<< HEAD
-<<<<<<< HEAD
         users = DB.selectAllUsers();
-=======
-        users = DB.query("SELECT k FROM Korisnik k");
->>>>>>> c201737408d285bc01bb853ab35113ca80b026e9
-=======
-        users = DB.selectAllUsers();
->>>>>>> c3f1b85a4b7f7af0d16b07952d4702ec6f447d92
         userPassword = new HashMap<>();
-        for (Korisnik k : users) {
+        for (Korisnik k: users) {
             userPassword.put(k.getKorUsername(), k.getKorPassword());
         }
-
+        
     }
 
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         System.out.println("");
@@ -60,30 +43,18 @@ public class ProveriKorisnika extends HttpServlet {
         String password = request.getParameter("password");
         response.setContentType("application/json;charset=UTF-8");
 
-        int proveraU = 0;
-        int proveraP = 0;
-        if (userPassword.containsKey(user)) {
+        int proveraU=0;
+        int proveraP=0;
+        if(userPassword.containsKey(user)){
             proveraU = 1;
-            if (userPassword.get(user).equals(password)) {
-                proveraP = 1;
+            if(userPassword.get(user).equals(password)){
+                proveraP =1;
             }
         }
         //  {"user":"proveraU","password":"proveraP"}
-<<<<<<< HEAD
-<<<<<<< HEAD
         String sb = new String("{\"user\":\"" + proveraU + "\",\"password\":\"" + proveraP + "\"}" );
         try (PrintWriter out = response.getWriter()) {
            out.println(sb);
-=======
-        StringBuilder sb = new StringBuilder("{\"user\":\"" + proveraU + "\",\"password\":\"" + proveraP + "\"}" );
-        try (PrintWriter out = response.getWriter()) {
-           out.println(sb.toString());
->>>>>>> c201737408d285bc01bb853ab35113ca80b026e9
-=======
-        String sb = "{\"user\":\"" + proveraU + "\",\"password\":\"" + proveraP + "\"}";
-        try (PrintWriter out = response.getWriter()) {
-            out.println(sb);
->>>>>>> c3f1b85a4b7f7af0d16b07952d4702ec6f447d92
         }
     }
 
