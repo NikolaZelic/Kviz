@@ -27,7 +27,7 @@ public class ProveriKorisnika extends HttpServlet {
     List<Korisnik> users;
     Map<String,String> userPassword;
     public ProveriKorisnika() {
-        users = DB.query("SELECT k FROM Kviz k");
+        users = DB.query("SELECT k FROM Korisnik k");
         userPassword = new HashMap<>();
         for (Korisnik k: users) {
             userPassword.put(k.getKorUsername(), k.getKorPassword());
