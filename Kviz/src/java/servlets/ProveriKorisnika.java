@@ -5,6 +5,7 @@
  */
 package servlets;
 
+import baza.DB;
 import baza.Korisnik;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -25,17 +26,17 @@ import javax.servlet.http.HttpServletResponse;
 public class ProveriKorisnika extends HttpServlet {
 
     List<Korisnik> users;
-    Map<String,String> userPassword;
+    Map<String, String> userPassword;
+
     public ProveriKorisnika() {
-        users = DB.query("SELECT k FROM Korisnik k");
+        users = DB.selectAllUsers();
         userPassword = new HashMap<>();
-        for (Korisnik k: users) {
+        for (Korisnik k : users) {
             userPassword.put(k.getKorUsername(), k.getKorPassword());
         }
-        
+
     }
 
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         System.out.println("");
@@ -43,18 +44,18 @@ public class ProveriKorisnika extends HttpServlet {
         String password = request.getParameter("password");
         response.setContentType("application/json;charset=UTF-8");
 
-        int proveraU=0;
-        int proveraP=0;
-        if(userPassword.containsKey(user)){
+        int proveraU = 0;
+        int proveraP = 0;
+        if (userPassword.containsKey(user)) {
             proveraU = 1;
-            if(userPassword.get(user).equals(password)){
-                proveraP =1;
+            if (userPassword.get(user).equals(password)) {
+                proveraP = 1;
             }
         }
         //  {"user":"proveraU","password":"proveraP"}
-        StringBuilder sb = new StringBuilder("{\"user\":\"" + proveraU + "\",\"password\":\"" + proveraP + "\"}" );
+        String sb = "{\"user\":\"" + proveraU + "\",\"password\":\"" + proveraP + "\"}";
         try (PrintWriter out = response.getWriter()) {
-           out.println(sb.toString());
+            out.println(sb);
         }
     }
 

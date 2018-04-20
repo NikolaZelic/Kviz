@@ -1,22 +1,68 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Kviz Login</title>        
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="js.js"></script>
+        <title>Login</title>
+        <style>
+            #error {
+                color: red;
+            }
+        </style>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script>
+            //  $(document).ready(function(){
+
+            function login() {
+                var userOK = false;
+                var passwordOK = false;
+                var post;
+                var user = $("#user").val();
+                var password = $("#password").val();
+//                alert("before length check");
+                if (user.length > 2) {
+                    $("#error").hide();
+                } else {
+                    $("#error").html("Username too short");
+                    $("#error").show();
+                    return;
+                }
+//                alert("before post");
+                $.post("proverikorisnika", {"user": user, "password": password}, function (data, status) {
+//                    alert("in post");
+//                    alert(data.user.toString());
+//                    alert(data.password.toString());
+                    if (data.user.toString().trim() == "1") {
+                        userOK = true;
+                    }
+                    if (data.password.toString().trim() == "1") {
+                        passwordOK = true;
+                    }
+//                    post = "asd";
+//                    alert("after post");
+//                    alert("asd");
+                    if (!userOK) {
+                        $("#error").show();
+                        $("#error").html("Username incorrect");
+                    } else if (!passwordOK) {
+                        $("#error").show();
+                        $("#error").html("Password incorrect");
+                    } else {
+                        $("#error").hide();
+                        window.location.href = "http://localhost:8080/Kviz/pitanja.html";
+                    }
+                });
+            }
+
+
+
+            // });
+        </script>
     </head>
     <body>
-        <div class="login-page">
-            <div class="form">
-                <form>
-                    <input id="name" type="text" placeholder="name" />
-                    <input id="pass" type="password" placeholder="password" />
-                    <button id="dugme" disabled>Sign In / Create</button>
-                </form>
-            </div>
+        <div>
+            <input type="text" id="user" placeholder="user"/>
+            <input type="password" id="password" placeholder="password"/>
+            <button onclick="login()">Login</button>
+            <p id="error" hidden>Username incorrect</p>
         </div>
     </body>
 </html>
