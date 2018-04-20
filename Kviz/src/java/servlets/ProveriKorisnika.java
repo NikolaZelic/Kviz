@@ -17,6 +17,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+
+import javax.servlet.*;
+import javax.servlet.http.*;
+import javax.servlet.jsp.*;
+import java.io.*;
+import java.util.*;
 /**
  *
  * @author Grupa1
@@ -42,13 +49,14 @@ public class ProveriKorisnika extends HttpServlet {
         String user = request.getParameter("user");
         String password = request.getParameter("password");
         response.setContentType("application/json;charset=UTF-8");
-
+        HttpSession session = request.getSession();
         int proveraU=0;
         int proveraP=0;
         if(userPassword.containsKey(user)){
             proveraU = 1;
             if(userPassword.get(user).equals(password)){
                 proveraP =1;
+                session.setAttribute("user", user);
             }
         }
         //  {"user":"proveraU","password":"proveraP"}

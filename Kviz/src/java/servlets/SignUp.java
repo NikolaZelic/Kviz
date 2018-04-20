@@ -49,6 +49,7 @@ public class SignUp extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+        
         response.setContentType("application/json;charset=UTF-8");
         Korisnik korisnik = new Korisnik();
         String user = request.getParameter("user").toString();
@@ -56,7 +57,7 @@ public class SignUp extends HttpServlet {
         korisnik.setKorUsername(user);
         korisnik.setKorUsername(password);
         DB.insert(korisnik);
-        
+        session.setAttribute("user", user);
         try (PrintWriter out = response.getWriter()) {
         }
     }
