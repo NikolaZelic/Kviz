@@ -92,4 +92,12 @@ public class DB {
         
     }
 
+    public static void singUpUser(String username, String password)
+    {
+        Korisnik k = new Korisnik();
+        k.setKorUsername(username);
+        k.setKorPassword(password);
+        insert(k);
+    }
+    
 }
