@@ -2,20 +2,16 @@
 <html>
     <head>
         <title>Login</title>
-        <link rel="stylesheet" type="text/css" href="list.css">
-        <style>
-            #error {
-                color: red;
-            }
-        </style>
+        <link rel="stylesheet" href="list.css">
+        <link rel="stylesheet" href="login.css">
         <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script src="login.js"></script>
     </head>
     <body>
         <div id="content">
-            <input type="text" id="user" placeholder="user"/>
-            <input type="password" id="password" placeholder="password"/>
-            <button onclick="login()">Login</button>
+            <input id="user" type="text" placeholder="user"/>
+            <input id="password" type="password" placeholder="password"/>
+            <button id="dugme">Login</button>
             <p id="error" hidden>Username incorrect</p>
         </div>
     </body>
