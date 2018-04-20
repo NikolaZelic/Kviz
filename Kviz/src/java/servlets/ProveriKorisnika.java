@@ -4,7 +4,11 @@
  * and open the template in the editor.
  */
 package servlets;
+<<<<<<< HEAD
 import baza.DB;
+=======
+
+>>>>>>> c201737408d285bc01bb853ab35113ca80b026e9
 import baza.Korisnik;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -27,7 +31,11 @@ public class ProveriKorisnika extends HttpServlet {
     List<Korisnik> users;
     Map<String,String> userPassword;
     public ProveriKorisnika() {
+<<<<<<< HEAD
         users = DB.selectAllUsers();
+=======
+        users = DB.query("SELECT k FROM Korisnik k");
+>>>>>>> c201737408d285bc01bb853ab35113ca80b026e9
         userPassword = new HashMap<>();
         for (Korisnik k: users) {
             userPassword.put(k.getKorUsername(), k.getKorPassword());
@@ -52,9 +60,15 @@ public class ProveriKorisnika extends HttpServlet {
             }
         }
         //  {"user":"proveraU","password":"proveraP"}
+<<<<<<< HEAD
         String sb = new String("{\"user\":\"" + proveraU + "\",\"password\":\"" + proveraP + "\"}" );
         try (PrintWriter out = response.getWriter()) {
            out.println(sb);
+=======
+        StringBuilder sb = new StringBuilder("{\"user\":\"" + proveraU + "\",\"password\":\"" + proveraP + "\"}" );
+        try (PrintWriter out = response.getWriter()) {
+           out.println(sb.toString());
+>>>>>>> c201737408d285bc01bb853ab35113ca80b026e9
         }
     }
 
