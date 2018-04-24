@@ -11,18 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-
-
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.jsp.*;
-import java.io.*;
-import java.util.*;
-/**
- *
- * @author Grupa1
- */
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "ProveriKorisnika", urlPatterns = {"/proverikorisnika"})
 public class ProveriKorisnika extends HttpServlet {
