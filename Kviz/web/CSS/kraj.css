@@ -1,6 +1,9 @@
 .shr{
     text-align: center;
+}
+
+img{
+    padding: 10px;
     display: block;
     margin:auto;
-    padding: 10px;
 }

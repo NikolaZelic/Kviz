@@ -9,17 +9,14 @@
     </head>
     <body>
         <div id="content"> 
-            <h1>Pitanje {index} : </h1>
-            <h2>Vredi {} poena</h2>
-            <p id="pitanje"></p>
-            <table id="odg">
-<!--                <tr><td>
-                        <label for="odg1">111</label>
-                        <input id="odg1" name="odg" type="radio">
-                    </td><td>-->                
-            </table>
-            <input id="btn1" type="button" value="Preskoci >>">
-            <input id="btn2" type="button" value="Potvrdi >">
+            <img src="https://cdn3.iconfinder.com/data/icons/brain-games/1042/Quiz-Games-red.png" alt="kviz slika" width="300">
+            <h1>Pitanje <span id="index"></span>: <strong><span id="pitanje"></span></strong> </h1>
+            <h2>Vredi <span id="poeni"></span> poena</h2>
+            <div id="unu">
+                <table id="odg"></table>
+                <input id="btn1" type="button" value="Preskoci >>">
+                <input id="btn2" type="button" value="Potvrdi >" disabled>
+            </div>
         </div>
     </body>
 </html>

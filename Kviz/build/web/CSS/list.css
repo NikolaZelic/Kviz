@@ -7,7 +7,7 @@ body {
 #content {
     position:absolute;
     margin: auto;
-    background-color:white;
+    background: url("https://uspstrackingtool.com/wp-content/uploads/2018/03/light-blue-background.png") ;
     width:1000px;
     height:100%;
     top:10px;
