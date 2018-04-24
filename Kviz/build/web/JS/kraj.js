@@ -1,6 +1,9 @@
 $(function () {
-    var zbir = ":(";
-    $("#zbir").text(zbir);
+    $.get("zbir", function (data) {
+        
+        var zbir = data;
+        $("#zbir").text(zbir);
+    });
 
     $("#pp").click(function () {
         window.location.href = "pitanja.html";

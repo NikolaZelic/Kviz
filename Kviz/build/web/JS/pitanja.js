@@ -2,9 +2,9 @@ $(function () {
 
     var tabela = $("#odg");
     var potvrdi = $("#btn2");
-    var n = 0;
-    var pitanja;
+    var indexPitanja = 0;
     var zbirPoena = 0;
+    var pitanja;
 
     $.get("http://671n121.mars-t.mars-hosting.com/pitanja", function (data) {
         pitanja = data.pitanja;
@@ -14,10 +14,11 @@ $(function () {
     function refresh() {
         tabela.empty();
         potvrdi.prop("disabled", true);
-        var pit = pitanja[n];
+        var pit = pitanja[indexPitanja];
         if (pit === undefined)
         {
             window.location.href = "kraj.html";
+            $.post("zbir", {"zbir": zbirPoena}, function () {});
             return;
         }
         $("#pitanje").text(pit.pit_text);
@@ -44,52 +45,19 @@ $(function () {
     }
 
     $("#btn1").click(function () {
-        ++n;
+        ++indexPitanja;
         refresh();
     });
 
     $("#btn2").click(function () {
         $('td input:checked').each(function () {
-            var pit = pitanja[n];
+            var pit = pitanja[indexPitanja];
             var nn = this.id.substring(5, 7);
-//            console.log("tacno: "+pit.odgovori[nn].odg_true);
             if (pit.odgovori[nn].odg_true === "1") {
                 zbirPoena += parseInt(pit.pit_bodovi);
             }
-//            console.log(zbirPoena);
         });
-        ++n;
+        ++indexPitanja;
         refresh();
-        return;
-//        var userOK = false;
-//        var passwordOK = false;
-//        var user = $("#user").val();
-//        var password = $("#password").val();
-//        if (user.length > 2) {
-//            $("#error").hide();
-//        } else {
-//            $("#error").html("Username too short");
-//            $("#error").show();
-//            return;
-//        }
-//
-//        $.post("proverikorisnika", {"poeni": zbirPoena}, function (data) {
-//            if (data.user.toString().trim() === "1") {
-//                userOK = true;
-//            }
-//            if (data.password.toString().trim() === "1") {
-//                passwordOK = true;
-//            }
-//            if (!userOK) {
-//                $("#error").show();
-//                $("#error").html("Username incorrect");
-//            } else if (!passwordOK) {
-//                $("#error").show();
-//                $("#error").html("Password incorrect");
-//            } else {
-//                $("#error").hide();
-//                window.location.href = "http://localhost:8080/Kviz/pitanja.html";
-//            }
-//        });
     });
 });

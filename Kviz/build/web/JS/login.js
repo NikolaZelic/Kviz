@@ -26,7 +26,7 @@ $(function () {
                 $("#error").html("Password incorrect");
             } else {
                 $("#error").hide();
-                window.location.href = "http://localhost:8080/Kviz/pitanja.html";
+                window.location.href = "pitanja.html";
             }
         });
     });
